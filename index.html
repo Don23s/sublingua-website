@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SubLingua – Effizienteres Lernen durch subliminale Stimulation</title>
+  <meta name="description" content="SubLingua nutzt neueste Erkenntnisse aus kognitiver und neuropsychologischer Forschung, um subliminales Lernen nahtlos in den Alltag zu integrieren." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0a1628;
+      --teal:   #0d9488;
+      --teal2:  #14b8a6;
+      --light:  #f0fdfa;
+      --gray:   #64748b;
+      --border: #e2e8f0;
+      --white:  #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1e293b;
+      background: var(--white);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,22,40,0.95);
+      backdrop-filter: blur(10px);
+      padding: 0 5%;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 1.25rem; font-weight: 700; color: var(--white);
+      text-decoration: none; letter-spacing: 0.05em;
+    }
+    .nav-logo span { color: var(--teal2); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      font-size: 0.9rem; font-weight: 500; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal2); }
+    .nav-cta {
+      background: var(--teal); color: var(--white);
+      padding: 8px 20px; border-radius: 6px;
+      text-decoration: none; font-size: 0.875rem; font-weight: 600;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--teal2); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, #0f2744 50%, #0a1a2e 100%);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 100px 5% 80px;
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(13,148,136,0.15) 0%, transparent 70%);
+    }
+    .hero-content { position: relative; max-width: 800px; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(13,148,136,0.2);
+      color: var(--teal2); border: 1px solid rgba(20,184,166,0.3);
+      padding: 6px 16px; border-radius: 20px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 24px;
+    }
+    #hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700; color: var(--white); line-height: 1.2;
+      margin-bottom: 24px;
+    }
+    #hero h1 em { color: var(--teal2); font-style: normal; }
+    #hero p {
+      font-size: 1.1rem; color: rgba(255,255,255,0.7);
+      max-width: 600px; margin: 0 auto 40px;
+    }
+    .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--teal); color: var(--white);
+      padding: 14px 32px; border-radius: 8px; font-weight: 600;
+      text-decoration: none; font-size: 1rem; transition: all 0.2s;
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--teal2); transform: translateY(-1px); }
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,0.3); color: var(--white);
+      padding: 14px 32px; border-radius: 8px; font-weight: 600;
+      text-decoration: none; font-size: 1rem; transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--teal2); color: var(--teal2); }
+
+    /* ── SECTIONS ── */
+    section { padding: 96px 5%; }
+    .container { max-width: 1060px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 12px;
+    }
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700; color: var(--navy); line-height: 1.25;
+      margin-bottom: 20px;
+    }
+    .lead {
+      font-size: 1.05rem; color: var(--gray);
+      max-width: 680px; margin-bottom: 48px;
+    }
+
+    /* ── VISION ── */
+    #vision { background: var(--light); }
+    .vision-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; align-items: center;
+    }
+    .vision-text p { color: #475569; margin-bottom: 16px; }
+    .vision-highlight {
+      border-left: 3px solid var(--teal);
+      padding: 16px 24px;
+      background: var(--white);
+      border-radius: 0 8px 8px 0;
+      margin-top: 24px;
+    }
+    .vision-highlight p { color: var(--navy); font-weight: 500; margin: 0; }
+    .vision-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .stat-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px;
+      text-align: center;
+    }
+    .stat-card .number {
+      font-size: 2rem; font-weight: 700; color: var(--teal);
+      display: block; margin-bottom: 6px;
+    }
+    .stat-card .label { font-size: 0.85rem; color: var(--gray); }
+
+    /* ── APPROACH ── */
+    #approach { background: var(--white); }
+    .approach-steps {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 32px; margin-top: 48px;
+    }
+    .step-card {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px 24px;
+    }
+    .step-number {
+      width: 40px; height: 40px;
+      background: var(--teal); color: var(--white);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.9rem; margin-bottom: 20px;
+    }
+    .step-card h3 { font-size: 1.05rem; color: var(--navy); margin-bottom: 10px; }
+    .step-card p { font-size: 0.9rem; color: var(--gray); }
+
+    /* ── OVERVIEW ── */
+    #overview { background: var(--navy); }
+    #overview h2 { color: var(--white); }
+    #overview .section-label { color: var(--teal2); }
+    #overview .lead { color: rgba(255,255,255,0.6); }
+    .overview-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 48px;
+    }
+    .overview-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 32px 24px;
+      transition: background 0.2s;
+    }
+    .overview-card:hover { background: rgba(13,148,136,0.1); }
+    .overview-card .icon {
+      font-size: 2rem; margin-bottom: 16px; display: block;
+    }
+    .overview-card h3 { font-size: 1.05rem; color: var(--white); margin-bottom: 10px; }
+    .overview-card p { font-size: 0.875rem; color: rgba(255,255,255,0.6); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--light); text-align: center; }
+    #contact .lead { margin: 0 auto 40px; }
+    .contact-form {
+      max-width: 520px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      width: 100%; padding: 12px 16px;
+      border: 1.5px solid var(--border); border-radius: 8px;
+      font-family: inherit; font-size: 0.95rem; outline: none;
+      transition: border-color 0.2s;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: var(--teal); }
+    .contact-form textarea { resize: vertical; min-height: 120px; }
+    .contact-form button {
+      background: var(--teal); color: var(--white);
+      padding: 14px; border: none; border-radius: 8px;
+      font-size: 1rem; font-weight: 600; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .contact-form button:hover { background: var(--teal2); }
+    .contact-note { font-size: 0.8rem; color: var(--gray); margin-top: 8px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy); color: rgba(255,255,255,0.5);
+      padding: 32px 5%; text-align: center; font-size: 0.85rem;
+    }
+    footer a { color: var(--teal2); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .vision-grid,
+      .approach-steps,
+      .overview-grid { grid-template-columns: 1fr; }
+      .vision-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">Sub<span>Lingua</span></a>
+    <ul class="nav-links">
+      <li><a href="#vision">Vision</a></li>
+      <li><a href="#approach">Ansatz</a></li>
+      <li><a href="#overview">Projekt</a></li>
+      <li><a href="#contact">Kontakt</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Interesse bekunden</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-badge">Kognitive Neurowissenschaft trifft EdTech</div>
+      <h1>Mit modernsten Erkenntnissen<br/>das Lernen <em>effizienter</em> gestalten</h1>
+      <p>SubLingua integriert subliminale Stimulation nahtlos in den Alltag — unterstützendes, müheloses Lernen auf Basis neuester Forschung.</p>
+      <div class="hero-actions">
+        <a href="#vision" class="btn-primary">Mehr erfahren</a>
+        <a href="#contact" class="btn-outline">Interesse bekunden</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section id="vision">
+    <div class="container">
+      <div class="vision-grid">
+        <div class="vision-text">
+          <div class="section-label">Unsere Vision</div>
+          <h2>Unbewusstes Lernen als Alltagsbegleiter</h2>
+          <p>Unser Gehirn ist im stetigen Austausch mit unserer Umwelt. Nur wenige Informationen werden dabei so verarbeitet, dass sie in unser Bewusstsein treten — dies bedeutet jedoch nicht, dass unbewusste Informationen unser Verhalten oder Wissen nicht beeinflussen.</p>
+          <p>Karremans, Stroebe und Claus (2006) zeigen, dass unbewusste (subliminale) Präsentationen tatsächlich einen Einfluss auf unser Verhalten haben können. Neuere Laborstudien belegen zudem langfristige Effekte auf Entscheidungen und Gedächtnis.</p>
+          <div class="vision-highlight">
+            <p>Es ist an der Zeit, Erkenntnisse aus der akademischen Forschung in die reale Welt zu transferieren und unsere Art zu lernen massgeblich zu überdenken.</p>
+          </div>
+        </div>
+        <div class="vision-stats">
+          <div class="stat-card">
+            <span class="number">95%</span>
+            <span class="label">der Informationsverarbeitung läuft unbewusst ab</span>
+          </div>
+          <div class="stat-card">
+            <span class="number">2×</span>
+            <span class="label">bessere Retention durch kombiniertes Lernen</span>
+          </div>
+          <div class="stat-card">
+            <span class="number">0</span>
+            <span class="label">zusätzlicher Zeitaufwand für subliminales Lernen</span>
+          </div>
+          <div class="stat-card">
+            <span class="number">AR</span>
+            <span class="label">Smart Glasses als Trägermedium</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section id="approach">
+    <div class="container">
+      <div class="section-label">Unser Ansatz</div>
+      <h2>Wie SubLingua funktioniert</h2>
+      <p class="lead">SubLingua nutzt neueste Technik, um subliminale Stimulation ohne grossen Aufwand in den Alltag zu implementieren.</p>
+      <div class="approach-steps">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Bewusste Lernphase</h3>
+          <p>Nach einem regulären Sprachkurs werden die gelernten Inhalte in der SubLingua-App erfasst und strukturiert aufbereitet.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Subliminale Stimulation</h3>
+          <p>Via Smart Glasses werden die gelernten Informationen nahtlos und unbewusst in den Alltag eingebaut — ohne bewussten Aufwand.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Tiefere Vernetzung</h3>
+          <p>Die gelernten Informationen werden unbewusst weiterverarbeitet, besser vernetzt und langfristig im Gedächtnis verankert.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <div class="container">
+      <div class="section-label">Projektübersicht</div>
+      <h2>Gemeinsam die Zukunft gestalten</h2>
+      <p class="lead">SubLingua sucht aktiv nach Partnern in Sprachschulen, bei denen das Produkt optimal an die Bedingungen des realen Lebens angepasst werden kann.</p>
+      <div class="overview-grid">
+        <div class="overview-card">
+          <span class="icon">🔬</span>
+          <h3>Pilotversuch</h3>
+          <p>In einer ersten Phase werden Sprachschulen als Partner gesucht, die ihr Kursangebot um eine subliminale Verarbeitungsphase nach dem regulären Kurstermin erweitern.</p>
+        </div>
+        <div class="overview-card">
+          <span class="icon">⚙️</span>
+          <h3>Individualisierung</h3>
+          <p>Unser Ansatz wird über eine individualisierte App benutzerfreundlich aufgebaut — angepasst an jede Sprachschule und jede Person.</p>
+        </div>
+        <div class="overview-card">
+          <span class="icon">📚</span>
+          <h3>Optimierter Lernprozess</h3>
+          <p>Wir entwickeln ein Lernsystem, das die bewusste Merkschranke nicht überschreitet und optimal von der unbewussten Verarbeitung aufgegriffen werden kann.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-label">Interesse bekunden</div>
+      <h2>Interesse an einer Zusammenarbeit?</h2>
+      <p class="lead">Wir suchen Sprachschulen und Bildungspartner für unsere Pilotphase. Melde dich — wir freuen uns auf den Austausch.</p>
+      <form class="contact-form" action="mailto:info@sublingua.ch" method="get">
+        <input type="text" name="name" placeholder="Name / Institution" required />
+        <input type="email" name="email" placeholder="E-Mail-Adresse" required />
+        <select name="role">
+          <option value="" disabled selected>Ich bin…</option>
+          <option value="school">Sprachschule / Bildungsinstitution</option>
+          <option value="researcher">Forscherin / Forscher</option>
+          <option value="investor">Investor / Partnerin</option>
+          <option value="other">Sonstiges</option>
+        </select>
+        <textarea name="message" placeholder="Nachricht (optional)"></textarea>
+        <button type="submit">Nachricht senden →</button>
+        <p class="contact-note">Wir antworten innerhalb von 48 Stunden.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 SubLingua · <a href="mailto:info@sublingua.ch">info@sublingua.ch</a> · <a href="#">Impressum</a> · <a href="#">Datenschutz</a></p>
+  </footer>
+
+</body>
+</html>
