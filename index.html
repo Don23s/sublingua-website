@@ -12,7 +12,21 @@
     @media (prefers-reduced-motion: no-preference) {
       @view-transition { navigation: auto; }
       ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
-      main { view-transition-name: main-content; }
+      main { view-transition-name: main-slide-transition; }
+      ::view-transition-old(main-slide-transition) {
+        animation: slide-out-to-left 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+      }
+      ::view-transition-new(main-slide-transition) {
+        animation: slide-in-from-right 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+      }
+    }
+    @keyframes slide-out-to-left {
+      from { transform: translateX(0);     opacity: 1; }
+      to   { transform: translateX(-100%); opacity: 0; }
+    }
+    @keyframes slide-in-from-right {
+      from { transform: translateX(100%); opacity: 0; }
+      to   { transform: translateX(0);    opacity: 1; }
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -259,6 +273,7 @@
     </ul>
     <a href="#contact" class="nav-cta">Interesse bekunden</a>
   </nav>
+  <main>
 
   <!-- HERO -->
   <section id="hero">
@@ -384,6 +399,7 @@
   </section>
 
   <!-- FOOTER -->
+  </main>
   <footer>
     <p>© 2026 SubLingua · <a href="mailto:info@sublingua.ch">info@sublingua.ch</a> · <a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></p>
   </footer>
