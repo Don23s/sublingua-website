@@ -14,20 +14,22 @@
       ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
       main { view-transition-name: main-slide-transition; }
       ::view-transition-old(main-slide-transition) {
-        animation: slide-out-to-left 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+        animation: slide-out-to-left 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
       }
       ::view-transition-new(main-slide-transition) {
-        animation: slide-in-from-right 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+        animation: slide-in-from-right 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+      }
+      :root[data-nav-dir="backward"] ::view-transition-old(main-slide-transition) {
+        animation: slide-out-to-right 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+      }
+      :root[data-nav-dir="backward"] ::view-transition-new(main-slide-transition) {
+        animation: slide-in-from-left 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
       }
     }
-    @keyframes slide-out-to-left {
-      from { transform: translateX(0);     opacity: 1; }
-      to   { transform: translateX(-100%); opacity: 0; }
-    }
-    @keyframes slide-in-from-right {
-      from { transform: translateX(100%); opacity: 0; }
-      to   { transform: translateX(0);    opacity: 1; }
-    }
+    @keyframes slide-out-to-left  { from { transform: translateX(0);     opacity: 1; } to { transform: translateX(-100%); opacity: 0; } }
+    @keyframes slide-in-from-right { from { transform: translateX(100%);  opacity: 0; } to { transform: translateX(0);     opacity: 1; } }
+    @keyframes slide-out-to-right  { from { transform: translateX(0);     opacity: 1; } to { transform: translateX(100%);  opacity: 0; } }
+    @keyframes slide-in-from-left  { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0);     opacity: 1; } }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -259,6 +261,7 @@
       .vision-stats { grid-template-columns: 1fr 1fr; }
     }
   </style>
+  <script src="/js/nav-transition.js" defer></script>
 </head>
 <body>
 
